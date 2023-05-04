@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovPlayer : MonoBehaviour
 {
     public int velocidad;
+    public int fuerzaSalto;
 
     private Rigidbody2D fisica;
 
@@ -17,5 +18,12 @@ public class MovPlayer : MonoBehaviour
     {
         float entradaX = Input.GetAxis("Horizontal");
         fisica.velocity = new Vector2(entradaX * velocidad,fisica.velocity.y);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            fisica.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
+        
     }
 }
