@@ -22,8 +22,19 @@ public class MovPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && Tocarsuelo
+            ())
             fisica.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
+
         
     }
+
+    private bool Tocarsuelo()
+    {
+        RaycastHit2D toca = Physics2D.Raycast(transform.position + new Vector3
+            (0, -2, 0), Vector2.down, 0.2f);
+        return toca.collider != null;
+        
+    }
+
 }
