@@ -18,21 +18,23 @@ public class MovEnemies : MonoBehaviour
 
     void Update()
     {
-        if (moviendoAFin)
-        {
-            transform.position = Vector3.MoveTowards
-                (transform.position,posicionFin, velocidad * Time.deltaTime);
-            //Cuando llegue al destino
-            if (transform.position == posicionFin)
-                moviendoAFin = false;
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards
-                (transform.position, posicionInicio, velocidad * Time.deltaTime);
-            //Cuaqndo llegue al inicio
-            if (transform.position == posicionInicio)
-                moviendoAFin = true;
-        }
+        Moverenemigo();
     }
+
+    private void Moverenemigo()
+    {
+        //1. Calcular la posicion de destino.
+        Vector3 posicionDestino = (moviendoAFin) ? posicionFin : posicionInicio;
+        //2. Mover enemigos.
+        transform.position = Vector3.MoveTowards
+            (transform.position, posicionDestino, velocidad * Time.deltaTime);
+
+        //Cambio de dirrecion.
+        if (transform.position == posicionFin) moviendoAFin = false;
+        if (transform.position == posicionInicio) moviendoAFin = true;
+
+
+    }
+
+
 }
