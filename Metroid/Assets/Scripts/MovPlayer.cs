@@ -40,9 +40,6 @@ public class MovPlayer : MonoBehaviour
 
     public void FinJuego()
     {
-
-
-
-    
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

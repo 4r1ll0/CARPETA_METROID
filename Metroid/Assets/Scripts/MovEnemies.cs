@@ -36,5 +36,14 @@ public class MovEnemies : MonoBehaviour
 
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Si el objeto que a colisionado con el enemigo es el jugador.
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<MovPlayer>().FinJuego();
+        }
+    }
+
 
 }
