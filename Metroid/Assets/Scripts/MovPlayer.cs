@@ -9,10 +9,12 @@ public class MovPlayer : MonoBehaviour
     public int fuerzaSalto;
 
     private Rigidbody2D fisica;
+    private SpriteRenderer sprite;
 
     private void Start()
     {
         fisica = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -26,6 +28,11 @@ public class MovPlayer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Tocarsuelo
             ())
             fisica.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
+
+        //si va hacia la derech FlipX = false (no volteo)
+        if (fisica.velocity.x > 0) sprite.flipX = false;
+        //si va hacia la izquierda volteo flipX = true
+        else if (fisica.velocity.x < 0) sprite.flipX = true;
 
         
     }
