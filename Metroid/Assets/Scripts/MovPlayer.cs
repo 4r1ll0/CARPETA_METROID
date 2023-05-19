@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +11,13 @@ public class MovPlayer : MonoBehaviour
 
     private Rigidbody2D fisica;
     private SpriteRenderer sprite;
+    private Animator animacion;
 
     private void Start()
     {
         fisica = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        animacion = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -34,8 +37,21 @@ public class MovPlayer : MonoBehaviour
         //si va hacia la izquierda volteo flipX = true
         else if (fisica.velocity.x < 0) sprite.flipX = true;
 
-        
+        animarJugador();
     }
+
+    private void animarJugador()
+    {
+        //Jugador saltando
+        if (!Tocarsuelo()) animacion.Play("jugadorsalto");
+        //Jugador Corriendo
+        else if ((fisica.velocity.x > 1 || fisica.velocity.x < -1)
+            && fisica.velocity.y == 0) animacion.Play("jugadorcorriendo");
+        //Jugador parado
+        else if ((fisica.velocity.x < 1 || fisica.velocity.x > -1)
+            && fisica.velocity.y == 0) animacion.Play("jugadorparado");
+    }
+
 
     private bool Tocarsuelo()
     {

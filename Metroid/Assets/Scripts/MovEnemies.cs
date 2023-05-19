@@ -13,11 +13,13 @@ public class MovEnemies : MonoBehaviour
     void Start()
     {
         posicionInicio = transform.position;
+        Debug.Log(posicionInicio);
         moviendoAFin = true;
     }
 
     void Update()
     {
+        Debug.Log(posicionInicio);
         Moverenemigo();
     }
 

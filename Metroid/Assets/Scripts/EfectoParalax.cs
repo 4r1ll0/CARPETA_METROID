@@ -21,6 +21,5 @@ public class EfectoParalax : MonoBehaviour
         transform.position += new Vector3(movimientoFondo.x * efectoParallax,
             movimientoFondo.y, 0);
         ultimaPosicionCamara = camara.position;
-
     }
 }
